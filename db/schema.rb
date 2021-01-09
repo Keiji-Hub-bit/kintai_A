@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_06_105747) do
+ActiveRecord::Schema.define(version: 2021_01_09_042644) do
 
   create_table "users", force: :cascade do |t|
     t.string "name"
@@ -21,10 +21,11 @@ ActiveRecord::Schema.define(version: 2021_01_06_105747) do
     t.string "department"
     t.string "employee_number"
     t.string "card_ID"
-    t.datetime "basic_time", default: "2021-01-02 23:00:00"
-    t.time "work_start_time", default: "2000-01-01 23:30:00"
-    t.datetime "work_finish_time", default: "2021-01-03 08:30:00"
+    t.datetime "basic_time", default: "2021-01-07 23:00:00"
+    t.datetime "work_start_time", default: "2021-01-07 23:30:00"
+    t.datetime "work_finish_time", default: "2021-01-08 08:30:00"
     t.string "remember_digest"
+    t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
