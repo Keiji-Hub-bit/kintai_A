@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails',        '~> 6.1'
+gem 'rails-i18n' #今回追加 1/10
 gem 'bcrypt' # 今回追加するgemです
 gem 'faker'
 gem 'bootstrap-sass'

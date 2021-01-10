@@ -2,18 +2,17 @@
 <h1>ユーザー一覧</h1>
 <div class="col-md-4 col-md-offset-1">
     <%= form_with(model: @user, local: true) do |f| %>
-      <%# <form enctype="multipart/form-data" action="/users/import" accept-charset="UTF-8" method="post"> %>
         <div class="search_item">
           <%= f.file_field :file, class:"form-control"%>
-          <%# <input type="file" name="file" id="file" class="form-control"> %>
         </div>
         <div class="csv-btn">
           <%= f.submit "CSVインポート", class: "btn btn-primary btn-block" %>
+          <%# <form enctype="multipart/form-data" action="/users/import" accept-charset="UTF-8" method="post"> %>
+          <%# <input type="file" name="file" id="file" class="form-control"> %>
           <%# <input type="submit" name="commit" value="CSVインポート" class="btn btn-primary btn-block" data-disable-with="CSVインポート"> %>
         </div>
     <% end %>
 </div>
-
 
 
 <div class="col-md-10 col-md-offset-1">
@@ -26,17 +25,18 @@
 
     <% @users.each do |user|%>
       <tr>
+        <% if current_user.admin? && !current_user?(user)%>
         <td><%= link_to user.name, user %><br>
-            <% if current_user.admin? && !current_user?(user)%>
+            
               <%= link_to "削除", user, method: :delete,
                   data: { confirm: "削除してよろしいですか？"},
                   class: "btn btn-primary" %>
-            <% end %> 
-            <div class="td-content3">  
+              <div class="td-content3">  
               <!-- ↓の説明：data-toggle = "collapse"→開閉ボタンに必要 data-target→開閉ボタンに必要、開閉するコンテンツと紐付ける 🌸🔴コンテンツの方にはclassにcollapseと付ける-->
                 <button class="btn btn-primary btn-lg btn-click btn-outline-warning " data-toggle="collapse" data-target="#accordion6" aria-expanded="true" aria-controls="accordion" autocomplete="off">編集</button>
             </div>
-            
+            <% end %> 
+          
             <%# <div class="panel-heading">
               <h4 class="panel-title">
                 <button type="button" data-toggle="collapse" href="#collapse3" class="btn btn-primary">編集</button>

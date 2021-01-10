@@ -11,6 +11,8 @@ module KintaiA
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
     config.time_zone = 'Asia/Tokyo'
+    config.i18n.default_locale = :ja #デフォルトの言語を日本語に設定します。
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
