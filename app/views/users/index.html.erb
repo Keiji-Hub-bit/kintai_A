@@ -27,16 +27,14 @@
       <tr>
         <% if current_user.admin? && !current_user?(user)%>
         <td><%= link_to user.name, user %><br>
-            
               <%= link_to "削除", user, method: :delete,
                   data: { confirm: "削除してよろしいですか？"},
                   class: "btn btn-primary" %>
-              <div class="td-content3">  
+              <div class="container">  
               <!-- ↓の説明：data-toggle = "collapse"→開閉ボタンに必要 data-target→開閉ボタンに必要、開閉するコンテンツと紐付ける 🌸🔴コンテンツの方にはclassにcollapseと付ける-->
-                <button class="btn btn-primary btn-lg btn-click btn-outline-warning " data-toggle="collapse" data-target="#accordion6" aria-expanded="true" aria-controls="accordion" autocomplete="off">編集</button>
-            </div>
-            <% end %> 
-          
+                  <button class="btn btn-primary btn-lg btn-click btn-outline-warning " data-toggle="collapse" data-target="#accordion6" aria-expanded="true" aria-controls="accordion" autocomplete="off">編集</button>        
+              </div>
+        <% end %> 
             <%# <div class="panel-heading">
               <h4 class="panel-title">
                 <button type="button" data-toggle="collapse" href="#collapse3" class="btn btn-primary">編集</button>
