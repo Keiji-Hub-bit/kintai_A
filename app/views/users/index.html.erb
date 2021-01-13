@@ -2,11 +2,9 @@
 <h1>ユーザー一覧</h1>
 <div class="col-md-4 col-md-offset-1">
     <%= form_with(model: @user, local: true) do |f| %>
-        <div class="search_item">
-          <%= f.file_field :file, class:"form-control"%>
-        </div>
+        <%= f.file_field :file, class:"seach_item"%>
         <div class="csv-btn">
-          <%= f.submit "CSVインポート", class: "btn btn-primary btn-block" %>
+          <%= f.submit "CSV出力", class: "btn btn-primary" %>
           <%# <form enctype="multipart/form-data" action="/users/import" accept-charset="UTF-8" method="post"> %>
           <%# <input type="file" name="file" id="file" class="form-control"> %>
           <%# <input type="submit" name="commit" value="CSVインポート" class="btn btn-primary btn-block" data-disable-with="CSVインポート"> %>
@@ -30,20 +28,23 @@
               <%= link_to "削除", user, method: :delete,
                   data: { confirm: "削除してよろしいですか？"},
                   class: "btn btn-primary" %>
-              <div class="container">  
+              <div class="container_1">  
               <!-- ↓の説明：data-toggle = "collapse"→開閉ボタンに必要 data-target→開閉ボタンに必要、開閉するコンテンツと紐付ける 🌸🔴コンテンツの方にはclassにcollapseと付ける-->
                   <button class="btn btn-primary btn-lg btn-click btn-outline-warning " data-toggle="collapse" data-target="#accordion6" aria-expanded="true" aria-controls="accordion" autocomplete="off">編集</button>        
               </div>
+                <div class="td-content3 td-content3-bgcolor collapse in" id="accordion7" aria-expanded="true" style="">
+                    <div class="collapse in">
+                        <div class="card card-body">
+                        </div>
+                    </div>
+                </div>
         <% end %> 
-            <%# <div class="panel-heading">
-              <h4 class="panel-title">
-                <button type="button" data-toggle="collapse" href="#collapse3" class="btn btn-primary">編集</button>
-              </h4>
-            </div> %>
         </td>  
-      </tr>
-      
+      </tr> 
     <% end %> 
   </table>
  </div>
 </div>
+
+<!--モーダルウインドウ表示-->
+<div id="edit-basic-info" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
