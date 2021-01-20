@@ -25,11 +25,12 @@
   </table>
   </div>
 </div>
-
+  <%= link_to "勤怠編集", attendances_edit_one_month_user_path(date: @first_day), class: "btn btn-lg btn-primary" %>
 <div>
   <table class="table table-bordered tabke-condensed table-hover" id="table-attendances">
     <thead>
       <tr>
+        <th>残業申請</th>
         <th>日付</th>
         <th>曜日</th>
         <th>勤怠登録</th>
@@ -37,12 +38,18 @@
         <th>退勤時間</th>
         <th>在社時間</th>
         <th>備考</th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
       </tr>
     </thead>
 
     <tbody>
       <% @attendances.each do |day| %>
         <tr>
+        　<td></td>
           <td><%= l(day.worked_on, format: :short) %></td>
           <td><%= $days_of_the_week[day.worked_on.wday] %></td>
           <td>
@@ -59,6 +66,12 @@
             <% end %>          
           </td>
           <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          
         </tr>
       <% end %>
     </tbody>
@@ -66,12 +79,14 @@
     <tfoot>
       <!--lowspan:縦結合　colspan:横結合-->
       <tr>
+        <td></td>
         <td colspan="2">累計日数</td>
         <td colspan="2">総合勤務時間</td>
         <td colspan="2">累計在社時間</td>
         <td rowspan="2"></td>
       </tr>
       <tr>
+        <td></td>
         <td colspan="2"><%= @attendances.count %></td>
         <td colspan="2"><%= ((format_basic_info(@user.work_finish_time).to_f)-(format_basic_info(@user.work_start_time).to_f)) * @worked_sum %></td>
         <td colspan="2"><%= format("%.2f", @total_working_times.to_f) %></td>
