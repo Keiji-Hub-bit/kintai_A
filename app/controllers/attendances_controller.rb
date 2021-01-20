@@ -28,5 +28,22 @@ class AttendancesController < ApplicationController
   def edit_one_month
   end 
   def update_one_month
+    ActiveRecord::Base.transaction do #トランザクション開始　2021/01/21
+      attendances_params.each do |id, item|
+        attendance = Attendance.find(id)
+        attendance.update_attributes!(item)
+      end
+    end
+    flash[:success] = "1ヶ月分の勤怠情報を更新しました。"
+    redirect_to user_url(date: params[:date])
+  rescue ActiveRecord::RecordInvalid #トランザクションによるエラーの分岐です。
+    flash[:danger] = "無効なデータがあった為、更新をキャンセルしました。"
+    redirect_to attendances_edit_one_month_user_url(date: params[:date])
   end 
+
+  private
+  #1ヶ月分の勤怠情報を扱います。
+  def attendances_params
+    params.require(:user).permit(attendances: [:started_at, :finished_at, :note])[:attendances]
+  end
 end
