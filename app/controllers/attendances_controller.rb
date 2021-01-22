@@ -1,6 +1,7 @@
 class AttendancesController < ApplicationController
-  before_action :set_user, only: :edit_one_month
+  before_action :set_user, only: [:edit_one_month, :update_one_month]
   before_action :logged_in_user, only: [:update, :edit_one_month]
+  before_action :admin_or_correct_user, only: [:update, :edit_one_month, :update_one_month]
   before_action :set_one_month, only: :edit_one_month
  
   UPDATE_ERROR_MSG = "登録に失敗しました。やり直してください。"
@@ -31,7 +32,7 @@ class AttendancesController < ApplicationController
     ActiveRecord::Base.transaction do #トランザクション開始　2021/01/21
       attendances_params.each do |id, item|
         attendance = Attendance.find(id)
-        attendance.update_attributes!(item)
+        attendance.update!(item)
       end
     end
     flash[:success] = "1ヶ月分の勤怠情報を更新しました。"
@@ -45,5 +46,15 @@ class AttendancesController < ApplicationController
   #1ヶ月分の勤怠情報を扱います。
   def attendances_params
     params.require(:user).permit(attendances: [:started_at, :finished_at, :note])[:attendances]
+  end
+
+  #beforeフィルター
+  #管理権限者または現在ログインしているユーザーを許可します。
+  def admin_or_correct_user
+    @user = User.find(params[:user_id])if @user.blank?
+    unless current_user?(@user) || current_user.admin?
+      flash[:danger] = "編集権限がありません"
+      redirect_to(root_url)
+    end
   end
 end
