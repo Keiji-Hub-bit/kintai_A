@@ -25,6 +25,23 @@
   </table>
   </div>
 </div>
+<% if current_user.superior? %>
+  <table class= "tabel-margin-bottom">
+    <tbody>
+      <tr>
+        <td><%= link_to "【所属長承認申請のお知らせ】","#",class: "form" %></td>
+      </tr>
+      <tr>
+        <td><%= link_to "【勤怠変更申請のお知らせ】","#",class: "form" %></td>
+      </tr>
+      <tr>
+        <td><%= link_to "【残業申請のお知らせ】","#",class: "form" %></td>
+      </tr>
+    </tbody>
+
+  </table>
+<% end %>
+
   <%= link_to "勤怠編集", attendances_edit_one_month_user_path(date: @first_day), class: "btn btn-lg btn-primary" %>
   <%= link_to "CSV出力", "#", class: "btn btn-lg btn-primary" %><br>
   <%= link_to "勤怠修正ログ(修正済)", "#", class: "btn btn-lg btn-primary" %>
