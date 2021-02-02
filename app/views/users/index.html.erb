@@ -15,35 +15,37 @@
 
 <div class="col-md-10 col-md-offset-1">
   <table class="table table-condensed tabke-hover" id="table-users" >
-    <thead>
-      <tr>
-        <th><%= User.human_attribute_name :name %></th>
-      </tr>
-    </thead>
 
-    <% @users.each do |user|%>
+    <% @users.each do |user| %>
       <tr>
         <% if current_user.admin? && !current_user?(user)%>
-        <td><%= link_to user.name, user %><br>
+        <td><%= link_to user.name, user, class: "form" %><br>
               <%= link_to "削除", user, method: :delete,
                   data: { confirm: "削除してよろしいですか？"},
                   class: "btn btn-primary" %>
-              <div class="container_1">  
-              <!-- ↓の説明：data-toggle = "collapse"→開閉ボタンに必要 data-target→開閉ボタンに必要、開閉するコンテンツと紐付ける 🌸🔴コンテンツの方にはclassにcollapseと付ける-->
-                  <button class="btn btn-primary btn-lg btn-click btn-outline-warning " data-toggle="collapse" data-target="#accordion6" aria-expanded="true" aria-controls="accordion" autocomplete="off">編集</button>        
+        
+        <div class="panel-group" id="accordion">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <button class="btn btn-primary btn-lg collapsed" type="button" data-toggle="collapse" data-parent="#accordion"
+                  href="#collapse<%= user.id %>"  aria-expanded="false">編集</button>
+              </h4>
+            </div>
+            <div id="collapse<%= user.id %>" class="panel-collapse collapse" >
+              <div class="panel-body">
+                <%= render "user",user: user %>
               </div>
-                <div class="td-content3 td-content3-bgcolor collapse in" id="accordion7" aria-expanded="true" style="">
-                    <div class="collapse in">
-                        <div class="card card-body">
-                        </div>
-                    </div>
-                </div>
-        <% end %> 
-        </td>  
+            </div>
+          </div>
+        </div>
+        </td>
+        <% end %>   
       </tr> 
     <% end %> 
+    
   </table>
- </div>
+  </div>
 </div>
 
 <!--モーダルウインドウ表示-->
