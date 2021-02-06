@@ -5,11 +5,27 @@ class UsersController < ApplicationController
   before_action :admin_user, only: [:destroy, :edit_basic_info, :update_basic_info]
   before_action :set_one_month, only: :show
   
+
   def index
     @users = User.all
     @user = User.find_by(params[:id])
   end
 
+  def import
+    if params[:file].blank?
+      flash[:danger] = "CSVファイルが選択されていません。"
+      redirect_to users_url
+    else
+      User.import(params[:file])
+      flash[:success] = "ユーザーを追加しました。"
+      redirect_to users_url
+    end
+  end
+
+  def staff_at_work
+    @users = User.includes(:attendances).where("attendances.started_at",Date.today).references(:attendances)
+  end
+  
   def show
     @worked_sum = @attendances.where.not(started_at: nil?).count
   end
@@ -73,5 +89,4 @@ class UsersController < ApplicationController
       params.require(:user).permit(:department, :basic_time, :work_time)
     end
 
- 
 end

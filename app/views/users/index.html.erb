@@ -1,17 +1,14 @@
 <% provide(:title, "All users" ) %>
 <h1>ユーザー一覧</h1>
 <div class="col-md-4 col-md-offset-1">
-    <%= form_with(model: @user, local: true) do |f| %>
-        <%= f.file_field :file, class:"seach_item"%>
+    <%= form_tag import_users_path, multipart: true do  %>
+        <%= file_field_tag :file, class:"search_item"%>
         <div class="csv-btn">
-          <%= f.submit "CSV出力", class: "btn btn-primary" %>
-          <%# <form enctype="multipart/form-data" action="/users/import" accept-charset="UTF-8" method="post"> %>
-          <%# <input type="file" name="file" id="file" class="form-control"> %>
-          <%# <input type="submit" name="commit" value="CSVインポート" class="btn btn-primary btn-block" data-disable-with="CSVインポート"> %>
+          <%= submit_tag "CSV出力", class: "btn btn-primary btn-block" %>
         </div>
     <% end %>
 </div>
-
+<tr></tr>
 
 <div class="col-md-10 col-md-offset-1">
   <table class="table table-condensed tabke-hover" id="table-users" >

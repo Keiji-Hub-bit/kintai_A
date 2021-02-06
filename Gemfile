@@ -4,6 +4,7 @@ gem 'rails',        '~> 6.1'
 gem 'rails-i18n' #今回追加 1/10
 gem 'bcrypt' # 今回追加するgemです
 gem 'faker'
+gem 'roo'  #CSV読込 20210203
 gem 'bootstrap-sass'
 gem 'puma',         '~> 3.7'
 gem 'sass-rails',   '~> 5.0'

@@ -8,6 +8,11 @@
   vertical-align: middle;
   text-align: center;
 }
+.user-table th {
+  vertical-align: middle;
+  text-align: center;
+}
+
 .user-table td  {
   font-size: 19px;
 }
@@ -16,6 +21,11 @@
 .btn-users-show {
   margin-top: -10px;
   margin-bottom: 10px;
+}
+
+.row {
+  margin-right: -15px;
+  margin-left: -15px;
 }
 
 /* ユーザー勤怠情報テーブル */
@@ -58,8 +68,10 @@
 /*ユーザー一覧ページ*/
 
 #table-users{
+  margin-top: 20px;
   td{
     vertical-align: middle;
+
   }
 }
 
@@ -127,12 +139,11 @@
   position: relative;
 }
 .search_item {
-  height: 34px;
-  font-size: 20px;
+  height: 30px;
+  font-size: 15px;
   line-height: 1.3333333;
   border-radius: 6px;
 }
-
 
 /* attendandeモデル追加 出勤登録ボタン*/
 .btn-attendance {
