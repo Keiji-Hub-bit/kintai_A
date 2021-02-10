@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   post   '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
+  
+
   resources :users do
     collection {post :import} #この行追加2021/02/03
     member do
@@ -20,4 +22,9 @@ Rails.application.routes.draw do
     resources :attendances, only: :update #この行を追加2021/1/16
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+    #拠点情報
+    resources :base_points do  #拠点情報用ルーティング20210207
+    end
 end
+
+

@@ -14,7 +14,8 @@ gem 'jquery-rails'
 gem 'turbolinks',   '~> 5'
 gem 'jbuilder',     '~> 2.5'
 gem 'pry-rails' #1/8追加
-
+gem 'pry-byebug'#2/10追加
+gem 'pry-doc'#2/10追加
 
 
 group :development, :test do

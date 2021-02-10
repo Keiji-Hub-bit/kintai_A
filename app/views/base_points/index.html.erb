@@ -1,0 +1,49 @@
+<% provide(:title, "拠点一覧")%>
+
+<div class="container">
+  <h1>拠点一覧</h1>
+  <div class="col-md-10">
+    <table class="table table-bordered table condensed table-hover user-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th></th>
+          <th>拠点番号</th>
+          <th>拠点名</th>
+          <th>勤怠種類</th>
+        </tr>
+      </thead>
+      
+      <% if @base_points.present? %>
+      <% @base_points.each do |base| %>
+        <tbody>
+          <tr class="acitive">
+            <td><%= link_to "編集", edit_base_point_path(base), remote: true,class: "btn btn-primary" %></td>
+            <td><%= link_to "削除",base_point_path(base.id), method: :delete,
+                              data: { confirm: "削除してよろしいですか？"},
+                              class: "btn btn-primary" %></td>
+            <td><%= base.base_number %></td>
+            <td><%= base.base_name %></td>
+            <td><%= base.base_kind %></td>
+          </tr>
+        </tbody> 
+      <% end %>
+      <% end %>
+    </table>
+  </div> 
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-10">
+    <%= link_to "拠点情報追加",new_base_point_path, remote: true,class: "btn btn-primary btn-lg" %>
+    </div>
+  </div>
+</div>
+
+
+
+<!--モーダル-->
+<div id="edit" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+<div id="new" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+

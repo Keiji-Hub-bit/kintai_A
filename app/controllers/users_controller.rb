@@ -23,8 +23,9 @@ class UsersController < ApplicationController
   end
 
   def staff_at_work
-    @users = User.includes(:attendances).where("attendances.started_at",Date.today).references(:attendances)
+    @in_working_users = User.in_working_users
   end
+
   
   def show
     @worked_sum = @attendances.where.not(started_at: nil?).count
