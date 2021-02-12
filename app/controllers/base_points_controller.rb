@@ -10,7 +10,8 @@ class BasePointsController < ApplicationController
       flash[:success] = "新しい拠点を追加しました。"
       redirect_to base_points_url
     else
-      flash[:danger] = "登録に失敗しました。"
+      flash[:danger] = "拠点番号の追加に失敗しました。<br>" + @base_point.errors.full_messages.join("<br>")
+      redirect_to base_points_url
     end
   end
 
@@ -27,7 +28,7 @@ class BasePointsController < ApplicationController
     if @base_point.update(base_params)
       flash[:success] = "拠点番号#{@base_point.base_number}を更新しました。"
     else
-      flash[:danger] = "拠点番号#{@base_point.base_number}の更新は失敗しました。<br>" + @base_point.errors.full.messages.join("<br>")
+      flash[:danger] = "拠点番号#{@base_point.base_number}の更新は失敗しました。<br>" + @base_point.errors.full_messages.join("<br>")
     end
       redirect_to base_points_url      
   end
