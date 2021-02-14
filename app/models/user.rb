@@ -14,6 +14,7 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   validates :basic_time,  presence: true #1/8追加
+  validates :work_time,  presence: true #2/12追加
   validates :work_start_time,  presence: true #1/8追加
   validates :work_finish_time,  presence: true #1/8追加
 

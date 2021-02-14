@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_08_131155) do
+ActiveRecord::Schema.define(version: 2021_02_12_133421) do
 
   create_table "attendances", force: :cascade do |t|
     t.date "worked_on"
@@ -46,6 +46,8 @@ ActiveRecord::Schema.define(version: 2021_02_08_131155) do
     t.string "remember_digest"
     t.boolean "admin", default: false
     t.boolean "superior"
+    t.string "work_time"
+    t.string "datetime"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
