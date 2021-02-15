@@ -4,7 +4,7 @@
     <%= form_tag import_users_path, multipart: true do  %>
         <%= file_field_tag :file, class:"search_item"%>
         <div class="csv-btn">
-          <%= submit_tag "CSV出力", class: "btn btn-primary btn-block" %>
+          <%= submit_tag "CSV出力", class: "btn btn-primary" %>
         </div>
     <% end %>
 </div>
