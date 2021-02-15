@@ -40,14 +40,13 @@ ActiveRecord::Schema.define(version: 2021_02_12_133421) do
     t.string "department"
     t.string "employee_number"
     t.string "card_ID"
-    t.datetime "basic_time", default: "2021-01-29 23:00:00"
-    t.datetime "work_start_time", default: "2021-01-29 23:30:00"
-    t.datetime "work_finish_time", default: "2021-01-30 08:30:00"
+    t.datetime "basic_time", default: "2021-02-14 23:00:00"
+    t.datetime "work_start_time", default: "2021-02-14 23:30:00"
+    t.datetime "work_finish_time", default: "2021-02-15 08:30:00"
     t.string "remember_digest"
     t.boolean "admin", default: false
     t.boolean "superior"
-    t.string "work_time"
-    t.string "datetime"
+    t.datetime "work_time", default: "2021-02-14 22:30:00"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
