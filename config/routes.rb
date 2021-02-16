@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       get  'attendances/edit_one_month' #この行が追加2021/01/20
       patch 'attendances/update_one_month' #この行をさらに追加2021/1/20
       get 'staff_at_work'#この行を2021年2月6日追加
+      get 'attendances/log'#この行を2021年2月16日追加
     end
     resources :attendances, only: :update #この行を追加2021/1/16
   end
