@@ -205,4 +205,6 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
       time: "%H：%M"
+      timeh: "%H" #2021/2/18追加
+      timem: "%M" #2021/2/18追加
     pm: 午後
