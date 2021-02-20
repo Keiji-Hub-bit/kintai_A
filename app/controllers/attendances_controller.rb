@@ -1,7 +1,7 @@
 class AttendancesController < ApplicationController
-  before_action :set_user, only: [:edit_one_month, :update_one_month, :log]
-  before_action :logged_in_user, only: [:update, :edit_one_month]
-  before_action :admin_or_correct_user, only: [:update, :edit_one_month, :update_one_month]
+  before_action :set_user, only: [:edit_one_month, :update_one_month, :log , :update_log]
+  before_action :logged_in_user, only: [:update, :edit_one_month, :log]
+  before_action :admin_or_correct_user, only: [:update, :edit_one_month, :update_one_month, :log, :update_log]
   before_action :set_one_month, only: [:edit_one_month, :log]
 
   UPDATE_ERROR_MSG = "登録に失敗しました。やり直してください。"
@@ -26,6 +26,15 @@ class AttendancesController < ApplicationController
     redirect_to @user
   end
 
+  def log
+    method = params[:search_method]
+    word = params[:search_word]
+
+  end
+
+  def update_log
+  end
+
   def edit_one_month
   end 
 
@@ -42,9 +51,6 @@ class AttendancesController < ApplicationController
     flash[:danger] = "無効なデータがあった為、更新をキャンセルしました。"
     redirect_to attendances_edit_one_month_user_url(date: params[:date])
   end 
-
-  def log
-  end
 
   private
   #1ヶ月分の勤怠情報を扱います。

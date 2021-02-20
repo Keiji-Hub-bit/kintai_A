@@ -30,3 +30,11 @@ ja:
           base_number: 拠点番号
           base_name: 拠点名
           base_kind: 拠点種類
+        log:
+          before_started_at : 変更前出勤時間
+          before_finished_at: 変更前退勤時間
+          after_started_at  : 変更後出勤時間
+          after_finished_at : 変更後退勤時間
+          Instructor        : 指示者    
+          approval_day      : 承認日
+

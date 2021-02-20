@@ -44,7 +44,8 @@
 
   <%= link_to "勤怠編集", attendances_edit_one_month_user_path(date: @first_day), class: "btn btn-lg btn-primary" %>
   <%= link_to "CSV出力", "#", class: "btn btn-lg btn-primary" %><br>
-  <%= link_to "勤怠修正ログ(修正済)", attendances_log_user_path(date: @first_day), class: "btn btn-lg btn-primary" %>
+  <%= link_to "勤怠修正ログ(修正済)", log_user_attendance_path(@user.attendances
+  ,date: @first_day), class: "btn btn-lg btn-primary" %>
 <div>
   <table class="table table-bordered table-condensed table-striped table-hover" id="table-attendances">
     <thead>
@@ -81,8 +82,8 @@
           <td><%= l(day.worked_on, format: :short) %></td>
           <td><%= $days_of_the_week[day.worked_on.wday] %></td>
           
-          <td><%= l(day.started_at, format: :timeh) if day.started_at.present? %></td>
-          <td><%= l(day.started_at, format: :timem) if day.started_at.present? %></td>
+          <td><%= l(day.started_at, format: :time_h) if day.started_at.present? %></td>
+          <td><%= l(day.started_at, format: :time_m) if day.started_at.present? %></td>
           <td>
             <% if btn_text = attendance_state(day) %>
               <%= link_to "#{btn_text}登録", user_attendance_path(@user, day), method: :patch, class: "btn btn-primary btn-attendance" %>
