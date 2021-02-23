@@ -76,29 +76,27 @@
     <tbody>
       <% @attendances.each do |day| %>
         <tr>
-          <td><%= link_to "残業申請", "#",method: :post,remote: true, class: "btn btn-lg btn-primary" %></td>
+          <td><%= link_to "残業申請", attendances_edit_over_worktime_user_path(@user), remote: true ,class: "btn btn-lg btn-primary" %></td>
           <td><%= l(day.worked_on, format: :short) %></td>
           <td><%= $days_of_the_week[day.worked_on.wday] %></td>
-          <td><%= l(day.started_at, format: :time_h) if day.started_at.present? %></td>
-          <td><%= l(day.started_at, format: :time_m) if day.started_at.present? %></td>
+          <td><%= day.started_at.strftime('%H') if day.started_at.present? %></td>
+          <td><%= day.started_at.floor_to(15.minutes).min if day.started_at.present? %></td>
           <td>
             <% if btn_text = attendance_state(day) %>
               <%= link_to "#{btn_text}登録", user_attendance_path(@user, day), method: :patch, class: "btn btn-primary btn-attendance" %>
             <% end %>
-          <td><%= l(day.finished_at, format: :time) if day.finished_at.present? %></td>
           </td>
+          <td><%= day.finished_at.strftime('%H') if day.finished_at.present? %></td>
+          <td><%= day.finished_at.floor_to(15.minutes).min if day.finished_at.present? %></td>
           <td></td>
-          <td></td>
-          <td></td>
-          <td>
-            <% if day.started_at.present? && day.finished_at.present? %>
+          <td> <% if day.started_at.present? && day.finished_at.present? %>
               <%= str_times = working_times(day.started_at, day.finished_at) %>
               <% @total_working_times = @total_working_times.to_f + str_times.to_f%>
-            <% end %>          
+              <% end %>         
           </td>
           <td><%= day.note %></td>
-          <td><%= day.plan_end_time.hour if day.plan_end_time.present? %>></td>
-          <td><%= day.plan_end_time.min if day.plan_end_time.present? %>></td>
+          <td><%= day.plan_end_time.hour if day.plan_end_time.present? %></td>
+          <td><%= day.plan_end_time.min if day.plan_end_time.present? %></td>
           <td></td>
           <td><%= day.work_content if day.work_content.present? %></td>
           <td><%= day.instructor if day.instructor.present? %></td>
@@ -128,4 +126,7 @@
       </tr>
     </tfoot>
   </table> 
-</div>    
+</div>  
+
+<!--モーダルウインドウ表示-->
+<div id="edit-over-worktime" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>

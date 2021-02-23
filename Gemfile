@@ -6,6 +6,7 @@ gem 'bcrypt' # 今回追加するgemです
 gem 'faker'
 #gem 'roo'  #CSV読込 20210203
 gem 'bootstrap-sass'
+gem 'rounding' #2/22追加
 gem 'puma',         '~> 3.7'
 gem 'sass-rails',   '~> 5.0'
 gem 'uglifier',     '>= 1.3.0'
@@ -16,6 +17,7 @@ gem 'jbuilder',     '~> 2.5'
 gem 'pry-rails' #1/8追加
 gem 'pry-byebug'#2/10追加
 gem 'pry-doc'#2/10追加
+
 
 
 group :development, :test do
