@@ -37,7 +37,6 @@ class AttendancesController < ApplicationController
   def edit_over_worktime
     @user = User.find(params[:user_id])
     @attendance = Attendance.find(params[:id])
-    @attendances = Attendance.all
 
   end
 
