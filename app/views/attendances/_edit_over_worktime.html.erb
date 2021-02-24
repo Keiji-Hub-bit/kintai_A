@@ -9,7 +9,7 @@
     <div class="modal-body">
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
-          <%= form_with(model: @user, url: attendances_update_over_worktime_user_path(@user), local: true, method: :patch) do |f| %>
+          <%= form_with(model: @user, url: update_over_worktime_user_attendance_path(@user,@attendance), local: true, method: :patch) do |f| %>
             <%= render 'shared/error_messages', object: @user %>
               <table class="table table-bordered table-condensed over_worktime_table">
                 <thead>

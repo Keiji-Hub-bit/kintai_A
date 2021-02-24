@@ -1,5 +1,5 @@
 class AttendancesController < ApplicationController
-  before_action :set_user, only: [:edit_one_month, :update_one_month, :edit_over_worktime]
+  before_action :set_user, only: [:edit_one_month, :update_one_month]
   before_action :logged_in_user, only: [:update, :edit_one_month, :edit_over_worktime]
   before_action :admin_or_correct_user, only: [:update, :edit_one_month, :update_one_month]
   before_action :set_one_month, only: [:edit_one_month, :log]
@@ -35,12 +35,14 @@ class AttendancesController < ApplicationController
   end
 
   def edit_over_worktime
+    @user = User.find(params[:user_id])
+    @attendance = Attendance.find(params[:id])
     @attendances = Attendance.all
 
   end
 
   def update_over_worktime
-
+    @attendance = Attendance.find(params[:id])
   end
 
   def edit_one_month

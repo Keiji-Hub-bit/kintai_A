@@ -76,13 +76,13 @@
     <tbody>
       <% @attendances.each do |day| %>
         <tr>
-          <td><%= link_to "残業申請", attendances_edit_over_worktime_user_path(@user), remote: true ,class: "btn btn-lg btn-primary" %></td>
+          <td><%= link_to "残業申請", edit_over_worktime_user_attendance_path(@user,day), remote: true ,class: "btn btn-lg btn-primary" %></td>
           <td><%= l(day.worked_on, format: :short) %></td>
           <td><%= $days_of_the_week[day.worked_on.wday] %></td>
           <td><%= day.started_at.strftime('%H') if day.started_at.present? %></td>
           <td><%= day.started_at.floor_to(15.minutes).min if day.started_at.present? %></td>
           <td>
-            <% if btn_text = attendance_state(day) %>
+            <% if btn_text = attendance_state(day) %>z
               <%= link_to "#{btn_text}登録", user_attendance_path(@user, day), method: :patch, class: "btn btn-primary btn-attendance" %>
             <% end %>
           </td>
