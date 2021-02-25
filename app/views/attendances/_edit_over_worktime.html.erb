@@ -8,7 +8,7 @@
     </div>
     <div class="modal-body">
       <div class="row">
-        <div class="col-md-6 col-md-offset-3">
+        <div class="col-md-12">
           <%= form_with(model: @user, url: update_over_worktime_user_attendance_path(@user,@attendance), local: true, method: :patch) do |f| %>
             <%= render 'shared/error_messages', object: @user %>
               <table class="table table-bordered table-condensed over_worktime_table">
@@ -32,7 +32,7 @@
                     <td><%= l(@attendance.worked_on, format: :short) %></td>
                     <td><%= $days_of_the_week[@attendance.worked_on.wday] %></td>
                     <td><%= f.time_field :plan_end_time, class: "form-control" %></td>
-                    <td><%= f.check_box :next_day,{class: "form-control"}, true, false %></td>
+                    <td><%= f.check_box :next_day,{class: "check_box"}, true, false %></td>
                     <td><%= f.text_field :work_content, class: "form-control" %></td>
                     <td><%= f.select :instructor, ['上長A','上長B'],{include_blank: '選択してください'}, class: "form-control" %></td>
                   </tr>

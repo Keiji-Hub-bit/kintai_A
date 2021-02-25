@@ -11,3 +11,28 @@
   margin-bottom: 20px;
 }
 
+thead {
+  display: table-header-group;
+  vertical-align: middle;
+  border-color: inherit;
+}
+
+.black {
+  color: black;
+  border: 1px solid black;
+}
+.size_small {
+  width: 18px;
+  height: 18px;
+}
+.maru {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+.modal-body {
+  position: relative;
+  padding: 15px;
+}
+
