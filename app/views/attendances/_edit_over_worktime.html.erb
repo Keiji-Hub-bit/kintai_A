@@ -12,7 +12,7 @@
           <%= form_with(model: @user, url: update_over_worktime_user_attendance_path(@user,@attendance), local: true, method: :patch) do |f| %>
             <%= render 'shared/error_messages', object: @user %>
               <table class="table table-bordered table-condensed over_worktime_table">
-                <thead>
+                <thead class="over_worktime">
                   <tr>
                     <th>日付</th>
                     <th>曜日</th>
