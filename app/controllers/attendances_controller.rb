@@ -2,7 +2,7 @@ class AttendancesController < ApplicationController
   before_action :set_user, only: [:edit_one_month, :update_one_month]
   before_action :logged_in_user, only: [:update, :edit_one_month, :edit_over_worktime]
   before_action :admin_or_correct_user, only: [:update, :edit_one_month, :update_one_month]
-  before_action :set_one_month, only: [:edit_one_month, :log]
+  before_action :set_one_month, only: [:edit_one_month,:log]
 
   UPDATE_ERROR_MSG = "登録に失敗しました。やり直してください。"
 
@@ -41,7 +41,16 @@ class AttendancesController < ApplicationController
   end
 
   def update_over_worktime
-    @attendance = Attendance.find(params[:id])
+    overworktime_params.each do |id, item|
+      attendance = Attendance.find(params[:id])
+      if attendance.update!(item)
+        flash[:success] = "残業申請を受付しました。"
+        redirect_to user_url current_user
+      else
+        flash[:danger] ="無効なデータがあり申請できませんでした( ﾉД`)"
+        redirect_to user_url  current_user
+      end
+    end
   end
 
   def edit_one_month
@@ -51,7 +60,7 @@ class AttendancesController < ApplicationController
     ActiveRecord::Base.transaction do #トランザクション開始 2021/01/21
       attendances_params.each do |id, item|
         attendance = Attendance.find(id)
-        attendance.update!(item)
+      attendance.update!(item)
       end
     end
     flash[:success] = "1ヶ月分の勤怠情報を更新しました。"
@@ -65,6 +74,10 @@ class AttendancesController < ApplicationController
   #1ヶ月分の勤怠情報を扱います。
   def attendances_params
     params.require(:user).permit(attendances: [:started_at, :finished_at, :note])[:attendances]
+  end
+
+  def overworktime_params
+    params.require(:user).permit(attendance: [:plan_end_time, :work_content,:next_day,:instructor])
   end
 
   #beforeフィルター
