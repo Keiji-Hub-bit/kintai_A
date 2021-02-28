@@ -41,16 +41,15 @@ class AttendancesController < ApplicationController
   end
 
   def update_over_worktime
-    overworktime_params.each do |id, item|
-      attendance = Attendance.find(params[:id])
-      if attendance.update!(item)
-        flash[:success] = "残業申請を受付しました。"
-        redirect_to user_url current_user
-      else
-        flash[:danger] ="無効なデータがあり申請できませんでした( ﾉД`)"
-        redirect_to user_url  current_user
-      end
-    end
+    @user = User.find(params[:user_id])
+    @attendance = Attendance.find(params[:id])
+        if @attendance.update(overworktime_params)
+          flash[:success] = "残業申請を受付しました(*'▽')"
+          redirect_to user_url @user
+        else
+          flash[:danger] ="無効なデータがあり申請できませんでした( ﾉД`)"
+          redirect_to user_url  current_user
+        end
   end
 
   def edit_one_month
@@ -77,8 +76,9 @@ class AttendancesController < ApplicationController
   end
 
   def overworktime_params
-    params.require(:user).permit(attendance: [:plan_end_time, :work_content,:next_day,:instructor])
+    params.require(:attendance).permit(:plan_end_time, :work_content,:next_day,:instructor)
   end
+  
 
   #beforeフィルター
   #管理権限者または現在ログインしているユーザーを許可します。

@@ -5,6 +5,7 @@ class Attendance < ApplicationRecord
   validates :worked_on, presence: true
   validates :note, length: { maximum: 50 }
 
+
   #出勤時間が存在しない場合は、退勤時間は無効
   validate :finished_at_is_invalid_without_a_started_at
   #出勤・退勤どちらも存在する時、出勤時間より早い退勤時間は無効
@@ -19,4 +20,9 @@ class Attendance < ApplicationRecord
       errors.add(:started_at, "より早い退勤時間は無効です。") if started_at > finished_at
     end
   end
+
+  def work_content_present
+    errors.add(:work_content,"の入力が必要です") if work_content.blank?
+  end
+
 end
