@@ -35,7 +35,8 @@
                         <td><%= f.time_field :plan_end_time, class: "form-control" %></td>
                         <td><%= f.check_box :next_day,{class: "check_box"}, true, false %></td>
                         <td><%= f.text_field :work_content, class: "form-control" %></td>
-                        <td><%= f.select :instructor, ['上長A','上長B'],{include_blank: '選択してください'}, class: "form-control" %></td>
+                        <%# <td><%= f.collection_select :instructor, ['上長A','上長B'],{include_blank: '選択してください'}, class: "form-control" %></td> %>
+                        <td><%= f.collection_select :instructor, @superior, :name, :name, {prompt: '上長を選択してください'}, {class: "form-control input-sm"} %></td>
                       </tr>
                   
                     </tbody>

@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 2021_02_23_131248) do
     t.datetime "work_finish_time", default: "2021-02-15 08:30:00"
     t.string "remember_digest"
     t.boolean "admin", default: false
-    t.boolean "superior"
+    t.boolean "superior",defoult: true
     t.datetime "work_time", default: "2021-02-14 22:30:00"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
