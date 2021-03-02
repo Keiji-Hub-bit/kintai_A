@@ -1,8 +1,8 @@
 class AttendancesController < ApplicationController
-  before_action :set_user, only: [:edit_one_month, :update_one_month]
+  before_action :set_user, only: [:edit_one_month, :update_one_month ]
   before_action :logged_in_user, only: [:update, :edit_one_month, :edit_over_worktime]
   before_action :admin_or_correct_user, only: [:update, :edit_one_month, :update_one_month]
-  before_action :set_one_month, only: [:edit_one_month,:log]
+  before_action :set_one_month, only: [:edit_one_month]
 
   UPDATE_ERROR_MSG = "登録に失敗しました。やり直してください。"
 
@@ -27,6 +27,9 @@ class AttendancesController < ApplicationController
   end
 
   def log
+    @user = User.find(params[:user_id])
+    @attendance = Attendance.find(params[:id])
+    @attendances = Attendance.all
     method = params[:search_method]
     word = params[:search_word]
   end

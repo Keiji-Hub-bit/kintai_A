@@ -1,9 +1,9 @@
-<% provide(:title, @user.name) %>
+<% provide(:title, "Attendance_log") %>
 <div class="container">
     <h1>勤怠ログ</h1>
-    <%= form_with(model: @user, url: attendances_log_user_path, rocal:true, method: :patch) do |f| %>
+    <%= form_with(model: @attendance, url: log_user_attendance_path, rocal:true, method: :patch) do |f| %>
       <%= f.date_select :date, { prompt:["年","月"], discard_day: true, use_month_numbers: true}, class: 'form-control date-only-width' %>
-        <%= form_tag(attendances_log_user_path, :method => 'get' ) do %>
+        <%= form_tag(log_user_attendance_path, :method => 'get' ) do %>
         <%= submit_tag '検索',name:nil,class: "btn  btn-lg btn-primary" %>
         <% end %>
           
@@ -21,9 +21,9 @@
               </tr>
             </thead>
             <tbody>
-              <% @user.attendances.each do |day| %>
-                <%= f.fields_for "attendances[]", day do |attendance| %>
-                  <% if day.finished_at.present?%>
+              <% @attendances.each do |day| %>
+                <%# <%= f.fields_for @log do |log| %>  
+                  <% if day.finished_at.present? %>
                     <tr>
                       <td><%= l(day.worked_on, format: :short) %></td>
                       <td></td>
@@ -34,7 +34,7 @@
                       <td></td>
                     </tr>
                   <% end %>
-                <% end %>
+                <%# <% end %> 
               <% end %>
             </tbody>
           </table>
