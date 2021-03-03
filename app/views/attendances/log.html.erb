@@ -6,6 +6,7 @@
         <%= form_tag(log_user_attendance_path, :method => 'get' ) do %>
         <%= submit_tag '検索',name:nil,class: "btn  btn-lg btn-primary" %>
         <% end %>
+      <% end %>
           
       <div class="log-table">
         <table class="table table-bordered table-striped table-condensed table-hover" id="table-attendances">
@@ -14,8 +15,8 @@
                 <th>日付</th>
                 <th>変更前出社時間</th>
                 <th>変更前退社時間</th>
-                <th>変更後出社</th>
-                <th>変更後退社</th>
+                <th>変更後出社時間</th>
+                <th>変更後退社時間</th>
                 <th>指示者</th>
                 <th>承認日</th>
               </tr>
@@ -40,4 +41,3 @@
           </table>
         </div>
       </div>
-    <% end %>
