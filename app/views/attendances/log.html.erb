@@ -3,10 +3,8 @@
     <h1>勤怠ログ</h1>
     <%= form_with(model: @attendance, url: log_user_attendance_path, local:true, method: :get) do |f| %>
       <%= f.date_select :date, { prompt:["年","月"], discard_day: true, use_month_numbers: true}, class: 'form-control date-only-width' %>
-        <%= form_tag(log_user_attendance_path, :method => 'get' ) do %>
-        <%= submit_tag '検索',name:nil,class: "btn  btn-lg btn-primary" %>
-        <% end %>
-    <% end %>
+        <%= f.submit '検索',name:nil,class: "btn  btn-lg btn-primary" %>
+      <% end %>
           
       <div class="log-table">
         <table class="table table-bordered table-striped table-condensed table-hover" id="table-attendances">

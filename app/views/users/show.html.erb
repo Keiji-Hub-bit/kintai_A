@@ -99,7 +99,7 @@
           <td><%= day.plan_end_time.min if day.plan_end_time.present? %></td>
           <td></td>
           <td><%= day.work_content if day.work_content.present? %></td>
-          <td><%= day.instructor if day.instructor.present? %></td>
+          <td><%= day.instructor+"に残業申請中" if day.instructor.present? %></td>
         </tr>
       <% end %>
     </tbody>
