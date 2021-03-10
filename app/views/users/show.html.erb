@@ -111,8 +111,8 @@
         <td colspan="5">総合勤務時間</td>
         <td colspan="5">累計在社時間</td>
         <td colspan="2" rowspan="2">所属長承認  未
-          <%= form_with model: @user do |f| %>
-          <%= f.select :name, [["上長A", "上長A"], ["上長B", "上長B"]] , include_blank: "上長を選択して下さい" %>
+          <%= form_with(model: @user, url:attendances_update_month_approval_user_path(@user), local: true, method: :patch) do |f| %>
+            <%= f.collection_select :instructor,@superior, :name, :name, {prompt: '上長を選択してください'}, {class: "form-control input-sm"} %>
           <% end %>
           <%= link_to "申請", "#", class: "btn btn-lg btn-primary" %>
         </td>

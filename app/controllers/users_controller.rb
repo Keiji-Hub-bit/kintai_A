@@ -30,6 +30,7 @@ class UsersController < ApplicationController
   def show
     @worked_sum = @attendances.where.not(started_at: nil?).count
     @attendance = @user.attendances.find_by(worked_on: @first_day)
+    @superior = User.where(superior: true)
   end
   
   def new

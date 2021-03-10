@@ -17,6 +17,8 @@ Rails.application.routes.draw do
       get  'attendances/edit_one_month'      #この行が追加2021/01/20
       patch 'attendances/update_one_month'   #この行をさらに追加2021/1/20
       get 'staff_at_work'                    #この行を2021年2月6日追加
+      #勤怠承認
+      patch 'attendances/update_month_approval'
       # get 'attendances/log'                  #この行を2021年2月16日追加
       # patch 'attendances/update_log'         #この行を2021年2月18日追加
     end
@@ -26,6 +28,8 @@ Rails.application.routes.draw do
           patch 'update_over_worktime'              #この行を追加2021/2/24日
           #勤怠ログ
           get 'log'  
+          
+
         end
       end
   end
