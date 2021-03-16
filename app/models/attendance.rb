@@ -25,4 +25,7 @@ class Attendance < ApplicationRecord
     errors.add(:work_content,"の入力が必要です") if work_content.blank?
   end
 
+#「Enum」は「列挙型」 モデルの数値カラムに対して文字列による名前定義をマップすることができます
+
+
 end

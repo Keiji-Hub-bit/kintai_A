@@ -112,6 +112,18 @@
         <td colspan="5">累計在社時間</td>
         <td colspan="2" rowspan="2">所属長承認  未
           <%= form_with(model: @user, url:attendances_update_month_approval_user_path(@user), local: true, method: :patch) do |f| %>
+            <%=f.hidden_field :instructor_confirmation_month, :Value => "申請中" %>
+            <%=f.hidden_field :approval_month, :Value => @first_day %>
+            <div class="form">
+              <%= if @attendance.instructor_confirmation_month == "承認" %>
+              <%= f.label:instructor_select_month, "所属長承認 #{@attendance.instructor_select_month}から承認済" %>
+
+         
+         
+         
+         
+         
+         
             <%= f.collection_select :instructor,@superior, :name, :name, {prompt: '上長を選択してください'}, {class: "form-control input-sm"} %>
           <% end %>
           <%= link_to "申請", "#", class: "btn btn-lg btn-primary" %>
