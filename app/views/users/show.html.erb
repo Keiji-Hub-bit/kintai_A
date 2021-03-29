@@ -110,23 +110,23 @@
         <td colspan="4">累計日数</td>
         <td colspan="5">総合勤務時間</td>
         <td colspan="5">累計在社時間</td>
-        <td colspan="2" rowspan="2">所属長承認  未
+        <td colspan="2" rowspan="2">
           <%= form_with(model: @user, url:attendances_update_month_approval_user_path(@user), local: true, method: :patch) do |f| %>
             <%=f.hidden_field :instructor_confirmation_month, :Value => "申請中" %>
             <%=f.hidden_field :approval_month, :Value => @first_day %>
             <div class="form">
-              <%= if @attendance.instructor_confirmation_month == "承認" %>
-              <%= f.label:instructor_select_month, "所属長承認 #{@attendance.instructor_select_month}から承認済" %>
-
-         
-         
-         
-         
-         
-         
-            <%= f.collection_select :instructor,@superior, :name, :name, {prompt: '上長を選択してください'}, {class: "form-control input-sm"} %>
+              <% if @attendance.instructor_confirmation_month == "承認" %>
+                <%= f.label :instructor_select_month, "所属長承認 #{@attendance.instructor_select_month}から承認済" %>
+              <% elsif @attendance.instructor_confirmation_month == "否認" %>
+                <%= f.label :instructor_select_month, "所属長否認 #{@attendance.instructor_select_month}から否認済" %>
+              <% elsif @attendance.instructor_confirmation_month == "申請中" %>
+                <%= f.label :instructor_select_month, "所属長承認 #{@attendance.instructor_select_month}へ申請中" %>
+              <% else %>
+                <%= f.label :instructor_select_month, "所属長承認 未" %>     
+              <% end %>
+            <%= f.collection_select :instructor_select_month,@superior, :name, :name, {prompt: '上長を選択してください'}, {class: "form-control input-sm"} %>
+            <%= f.submit "申請", class: "btn btn-lg btn-primary" %>
           <% end %>
-          <%= link_to "申請", "#", class: "btn btn-lg btn-primary" %>
         </td>
       </tr>
       <tr>
