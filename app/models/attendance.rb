@@ -26,6 +26,7 @@ class Attendance < ApplicationRecord
   end
 
 #「Enum」は「列挙型」 モデルの数値カラムに対して文字列による名前定義をマップすることができます
-
+#上長確認カラム not:なし, approval:承認, denial:否認, applying: 申請中
+enum instructor_confirmation_month: {"なし" => 0, "承認" => 1, "否認" => 2, "申請中" => 3},_prefix:true 
 
 end

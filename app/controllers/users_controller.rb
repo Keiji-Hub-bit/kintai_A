@@ -31,6 +31,7 @@ class UsersController < ApplicationController
     @worked_sum = @attendances.where.not(started_at: nil?).count
     @attendance = @user.attendances.find_by(worked_on: @first_day)
     @superior = User.where(superior: true)
+    @month = Attendance.where(instructor_confirmation_month: "申請中", instructor_confirmation_month:@user.name).count
   end
   
   def new
